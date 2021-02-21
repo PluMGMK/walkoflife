@@ -27,6 +27,12 @@ fn main() -> Result<(), String> {
         let countdown: i32 = read_prims(r2pid, countdown_ptr, 1).unwrap()[0];
 
         println!("{} -> {}", countdown, timer);
+
+        // Try to figure out some other stuff…
+        let framerate: f32 = read_prims(r2pid, 0x5036A8, 1).unwrap()[0];
+        let inverse_framerate: f32 = read_prims(r2pid, 0x50043C, 1).unwrap()[0];
+        let delta_t: i32 = read_prims(r2pid, 0x500434, 1).unwrap()[0];
+        println!("Frame rate: {}; Inverse frame rate: {}; Delta t: {}", framerate, inverse_framerate, delta_t);
     };
 
     Ok(())

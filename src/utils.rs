@@ -537,24 +537,6 @@ pub fn get_custom_bits_ptr(r2pid: Pid, super_object: usize) -> Result<usize, Str
 /// * You need to give a pointer to a valid super-object.
 ///
 /// ## Returns:
-/// * On success, returns a pointer to the custom bits.
-/// * Returns an `Err` variant with a text description of what went wrong,
-/// if the memory read fails.
-pub fn get_custom_bits_ptr(r2pid: Pid, super_object: usize) -> Result<usize, String> {
-    match get_pointer_path(r2pid, super_object + 4, Some(&vec![4])) {
-        Ok(ptr) => Ok(ptr + 0x24),
-        Err(err) => Err(format!("Unable to get Custom Bits: {:?}", err)),
-    }
-}
-
-/// Get a pointer to the AI Model used by the given `super_object`
-/// in the Rayman 2 process given by `r2pid`.
-///
-/// ## Requirements:
-/// * We need to have permissions to debug `pid` (e.g. with `CAP_SYS_PTRACE`).
-/// * You need to give a pointer to a valid super-object.
-///
-/// ## Returns:
 /// * On success, returns a pointer to the AI Model.
 /// * Returns an `Err` variant with a text description of what went wrong,
 /// if the memory read fails.
